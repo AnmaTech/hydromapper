@@ -7,3 +7,4 @@ plotly
 pandas
 scipy
 folium
+streamlit_folium
