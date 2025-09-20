@@ -11,6 +11,7 @@ import datetime
 
 # Ruta de la imagen (asegúrate de que exista en tu sistema)
 image_path = "HydroMapper/img/Esquema_pozo.png"
+image_path = "img/Esquema_pozo.png"
 
 def generar_pdf_bomba(caudal, HB, potencia, imagen_path, nombre_archivo="reporte_bomba.pdf"):
     from fpdf import FPDF
@@ -297,4 +298,5 @@ def ejecutar_pozo():
                     st.success(f"🔧 Punto de operación encontrado: Q = {Q_operacion:.2f} lps, H = {H_operacion:.2f} m")
 
                 except Exception as e:
+
                     st.error(f"❌ Error al calcular la curva del sistema: {e}")
