@@ -3,4 +3,5 @@ Pillow
 numpy
 matplotlib
 oopnet
+plotly
 pandas
