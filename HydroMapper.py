@@ -6,6 +6,8 @@ import epanet_diseno as epanet_diseno
 import epanet_operacion as epanet_ope
 import pumpv2 as pump
 import Embalse as embalse
+import os
+os.environ["PATH"] += os.pathsep + os.path.expanduser("~/.local/bin")
 
 # 🌐 Configuración de la página
 st.set_page_config(
@@ -58,4 +60,5 @@ elif opcion == "❌ Salir":
     st.title("👋 Hasta pronto")
 
     st.markdown("Gracias por usar la aplicación. Puedes cerrar la pestaña o volver al menú lateral.")
+
 
