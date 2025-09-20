@@ -1,0 +1,6 @@
+streamlit
+Pillow
+numpy
+matplotlib
+oopnet
+pandas
