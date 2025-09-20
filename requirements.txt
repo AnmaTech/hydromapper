@@ -6,3 +6,4 @@ oopnet
 plotly
 pandas
 scipy
+folium
