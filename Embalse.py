@@ -9,6 +9,7 @@ from oopnet.elements import Reservoir, Pump, Valve
 import math
 from matplotlib.collections import LineCollection
 import pandas as pd
+import chardet
 
 
 
@@ -59,7 +60,52 @@ def replace_diam (network, DIAM_NEW):
     return network_new
 
 
+def convertir_a_utf8(file_bytes):
+    # Detectar codificación
+    result = chardet.detect(file_bytes)
+    encoding_detectado = result['encoding']
+
+    # Decodificar y recodificar a UTF-8
+    texto = file_bytes.decode(encoding_detectado)
+    return texto.encode('utf-8')
+
+
 def cargar_EPANET():
+    # 📥 Widget para cargar archivo .inp de EPANET
+    archivo_inp = st.sidebar.file_uploader("📂 Selecciona tu archivo EPANET (.inp)", type=["inp"])
+
+    if archivo_inp is None:
+        st.warning("⚠️ Por favor, selecciona un archivo .inp para continuar.")
+        return None
+
+    # 🧠 Detectar codificación
+    file_bytes = archivo_inp.getvalue()
+    result = chardet.detect(file_bytes)
+    encoding_detectado = result['encoding']
+
+    try:
+        # 📦 Decodificar y recodificar a UTF-8
+        texto = file_bytes.decode(encoding_detectado)
+        file_utf8 = texto.encode('utf-8')
+    except Exception as e:
+        st.error(f"❌ Error al convertir el archivo a UTF-8: {e}")
+        return None
+
+    # 🗂️ Crear carpeta temporal si no existe
+    os.makedirs("temp", exist_ok=True)
+
+    # 📍 Ruta local donde se guardará el archivo
+    ruta_local = os.path.join("temp", archivo_inp.name)
+
+    # 💾 Guardar el archivo corregido en disco
+    with open(ruta_local, "wb") as f:
+        f.write(file_utf8)
+
+    # ✅ Retornar la ruta para usarla en otras funciones
+    return ruta_local
+
+
+def cargar_EPANET_orig():
     # 📥 Widget para cargar archivo .inp de EPANET
     archivo_inp = st.sidebar.file_uploader("📂 Selecciona tu archivo EPANET (.inp)", type=["inp"])
 
@@ -576,6 +622,7 @@ def run():
 
 ##        run_plot_presiones_psi(Network_orig,pmin)
 ##        run_tabla_resultados([node.id for node in on.get_nodes(Network_orig)], [round(p * (1/0.703085), 2) for p in P], 'Nodo', 'P (psi)')
+
 
 
 #
