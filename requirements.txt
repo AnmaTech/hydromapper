@@ -5,3 +5,4 @@ matplotlib
 oopnet
 plotly
 pandas
+scipy
