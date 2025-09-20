@@ -8,3 +8,4 @@ pandas
 scipy
 folium
 streamlit_folium
+fpdf 
