@@ -16,7 +16,7 @@ st.set_page_config(
 
 # 📌 Cargar logo en la barra lateral
 with st.sidebar:
-    logo = Image.open("HydroMapper/img/logoAnma.jpg")
+    #logo = Image.open("img/logoAnma.jpg")
     logo = Image.open("img/logoAnma.jpg")
     st.image(logo)
 
@@ -58,3 +58,4 @@ elif opcion == "❌ Salir":
     st.title("👋 Hasta pronto")
 
     st.markdown("Gracias por usar la aplicación. Puedes cerrar la pestaña o volver al menú lateral.")
+
