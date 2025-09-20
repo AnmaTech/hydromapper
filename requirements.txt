@@ -9,3 +9,6 @@ scipy
 folium
 streamlit_folium
 fpdf 
+chardet
+
+
